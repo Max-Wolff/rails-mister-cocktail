@@ -1,4 +1,11 @@
 <h1> <%= @cocktail.name %></h1>
 
 
+<% @cocktail.doses.each_with_index do |dose, index| %>
+<%= "Step #{index + 1}: Add #{dose.description} #{Ingredient.find(dose.ingredient_id).name}" %>
+  <%= link_to "⨯", dose_path(dose), method: :delete %>
+  <br>  <br>
+<% end %>
+
+<%= link_to "Add Ingredients", new_cocktail_dose_path(@cocktail), class: "btn btn-primary"%> <br><br>
 <%= link_to "Back to Overview", cocktails_path, class: "btn btn-primary"%>

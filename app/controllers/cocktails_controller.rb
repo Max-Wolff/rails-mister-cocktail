@@ -1,24 +1,31 @@
+require 'open-uri'
+require 'nokogiri'
+
 class CocktailsController < ApplicationController
   # resources :cocktails [:index, :show, :new, :create]
   before_action :set_cocktail, only: [:show]
 
   def index
     @cocktails = Cocktail.all
+    @cocktail = Cocktail.new
   end
 
   def show; end
 
-  def new
-    @cocktail = Cocktail.new
-  end
-
   def create
     @cocktail = Cocktail.new(cocktail_params)
+    scraper(@cocktail)
     if @cocktail.save
-      redirect_to cocktail_path(@cocktail)
+      redirect_to cocktails_path
     else
-      render :new
+      render :index
     end
+  end
+
+  def destroy
+    set_cocktail
+    @cocktail.destroy
+    redirect_to cocktails_path
   end
 
   private
@@ -28,6 +35,15 @@ class CocktailsController < ApplicationController
   end
 
   def cocktail_params
-    params.require(:cocktail).permit(:name)
+    params.require(:cocktail).permit(:name, :picture_url)
+  end
+
+  def scraper(cocktail)
+    url = "https://www.bbcgoodfood.com/search/recipes?query=#{@cocktail.name}"
+    html_doc = Nokogiri::HTML(open(url).read)
+    html_doc.search('.teaser-item__image img').each do |element|
+      image_tag = element.attributes
+      cocktail.picture_url = "https://#{image_tag["src"].value}"
+    end
   end
 end
