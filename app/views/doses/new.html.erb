@@ -1,0 +1,10 @@
+<h1>Create new Dose</h1>
+
+<%= form_for [@cocktail, @dose] do |f| %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.association :ingredients, as: :check_boxes %>
+  <%= f.association :cocktails %>
+  <%= f.submit %>
+<% end %>
+

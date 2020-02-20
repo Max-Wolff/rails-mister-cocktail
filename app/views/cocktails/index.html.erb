@@ -1,0 +1,9 @@
+<h1>All your beautiful cocktails</h1>
+
+<% @cocktails.each_with_index do |cocktail, idx| %>
+  <%= link_to "#{idx + 1} - #{cocktail.name}", cocktail_path(cocktail) %> <br>
+<% end %>
+
+<br>
+
+<%= link_to "Add Cocktail", new_cocktail_path, class: "btn btn-primary" %>
