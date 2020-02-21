@@ -11,7 +11,6 @@ class CocktailsController < ApplicationController
     @search = params["params"]
     if @search.present? && @search[":search"].empty? == false
       @name = "#{@search[":search"]} Cocktail"
-      raise
       @cocktails = Cocktail.where(name: @name)
     end
   end
