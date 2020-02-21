@@ -20,7 +20,7 @@
   <div class="cards justify-content-center">
     <% @cocktails.each_with_index do |cocktail, idx| %>
     <div class="card-category" style="background-image: url(<%= cocktail.picture_url %>); background-size: contain; background-repeat: no-repeat;">
-       <%= link_to "#{idx + 1}", cocktail_path(cocktail), :style=>'color: white' %>
+       <%= link_to "#{idx + 1}", cocktail_path(cocktail), method: :delete, :style=>'color: white' %>
        <%= link_to " : #{cocktail.name.gsub("Cocktail", "")}", cocktail_path(cocktail), :style=>'color: white' %>
     </div>
     <% end %>
