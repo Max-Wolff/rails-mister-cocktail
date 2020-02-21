@@ -1,11 +1,43 @@
-<h1> <%= @cocktail.name %></h1>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <%= link_to "#", class: "navbar-brand" do %>
+    <%= image_tag "https://cdn.worldvectorlogo.com/logos/rockstar-energy-drink-logo-3.svg" %>
+  <% end %>
+  <div class="wrapper">
+   <h1 style="font-family: 'Pacifico', cursive; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); margin-left: 40vw; margin-top: 10px;" class="justify-content-center"><%= @cocktail.name %></h1>
+   </div>
+</div>
+
+<div class="container mt-5 headers">
+  <div class="d-flex justify-content-center">
+    <h1 style="font-family: 'Pacifico', cursive; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);" class="justify-content-center">Recipe - Step by Step</h1>
+  </div>
+  <br><br>
 
 
-<% @cocktail.doses.each_with_index do |dose, index| %>
-<%= "Step #{index + 1}: Add #{dose.description} #{Ingredient.find(dose.ingredient_id).name}" %>
-  <%= link_to "⨯", dose_path(dose), method: :delete %>
-  <br>  <br>
-<% end %>
+  <% @cocktail.doses.each_with_index do |dose, index| %>
+  <div class="d-flex justify-content-center">
+  <%= "Step #{index + 1}: Add #{dose.description} #{Ingredient.find(dose.ingredient_id).name}" %>
+    <%= link_to "⨯", dose_path(dose), method: :delete %>
+    <br><br>
+    </div>
+  <% end %>
+  <br><br><br>
 
-<%= link_to "Add Ingredients", new_cocktail_dose_path(@cocktail), class: "btn btn-primary"%> <br><br>
-<%= link_to "Back to Overview", cocktails_path, class: "btn btn-primary"%>
+  <div class="d-flex justify-content-center headers">
+    <h1 style="font-family: 'Pacifico', cursive; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);" class="justify-content-center">Add Ingredients</h1>
+  </div>
+  <br>
+
+  <%= simple_form_for [@cocktail, @dose] do |f| %>
+    <%= f.input :description %>
+    <%= f.association :ingredient %>
+    <%= f.association :cocktail %>
+    <%= f.submit :class=> 'btn btn-primary'%>
+  <% end %>
+  <br><br>
+
+  <div class="d-flex justify-content-center">
+    <%= link_to "Back to Overview", cocktails_path, class: "btn btn-primary"%>
+  </div>
+
+</div>

@@ -10,7 +10,10 @@ class CocktailsController < ApplicationController
     @cocktail = Cocktail.new
   end
 
-  def show; end
+  def show
+    id = @cocktail.id
+    @dose = Dose.new(cocktail_id: id)
+  end
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
@@ -18,7 +21,17 @@ class CocktailsController < ApplicationController
     if @cocktail.save
       redirect_to cocktails_path
     else
-      render :index
+      @cocktail.picture_url = "https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80"
+      @cocktail.save
+      redirect_to cocktails_path
+    end
+    id = params[:cocktail_id].to_i
+    @cocktail = Cocktail.find(id)
+    @dose = Dose.new(dose_params)
+    if @dose.save
+      redirect_to cocktail_path(@cocktail)
+    else
+      render :new
     end
   end
 

@@ -2,55 +2,36 @@
   <%= link_to "#", class: "navbar-brand" do %>
     <%= image_tag "https://cdn.worldvectorlogo.com/logos/rockstar-energy-drink-logo-3.svg" %>
   <% end %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-   <h1 style="font-family: 'Pacifico', cursive;">Awesome Cocktails</h1>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <%= link_to "Home", "#", class: "nav-link btn btn-primary mr-3 px-3", :style=>'color: white' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Add Cocktail", new_cocktail_path, class: "nav-link btn btn-primary mr-2 px-3", :style=>'color: white' %>
-      </li>
-    </ul>
-  </div>
+  <div class="wrapper">
+   <h1 style="font-family: 'Pacifico', cursive; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.6); margin-left: 40vw; margin-top: 10px;" class="justify-content-center">Awesome Cocktails</h1>
+   </div>
 </div>
 
-
-<div class="container mt-5">
+  <%= simple_form_for :search, url: cocktails_path, method: :get do |f| %>
+  <div class="container mt-5">
+    <div class="search-form-control form-group">
+      <input class="form-control string required" type="text" name="search[query]" id="search_query" />
+      <button name="button" type="submit" class="btn btn-flat">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+  <% end %>
 
   <div class="cards justify-content-center">
     <% @cocktails.each_with_index do |cocktail, idx| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cocktail.picture_url %>); background-size: contain; background-repeat: no-repeat;">
+    <div class="card-category" style="background-image: url(<%= cocktail.picture_url %>); background-size: contain; background-repeat: no-repeat;">
        <%= link_to "#{idx + 1}", cocktail_path(cocktail), method: :delete, :style=>'color: white' %>
-       <%= link_to " : #{cocktail.name}", cocktail_path(cocktail), :style=>'color: white' %>
+       <%= link_to " : #{cocktail.name.gsub("Cocktail", "")}", cocktail_path(cocktail), :style=>'color: white' %>
     </div>
     <% end %>
 
-  <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.bbcgoodfood.com/sites/default/files/review/guide-image/2018/10/non-alcoholic-drinks-hero.jpg)">
+  <div class="card-category-type" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url(https://www.bbcgoodfood.com/sites/default/files/review/guide-image/2018/10/non-alcoholic-drinks-hero.jpg)">
       <%= form_for @cocktail, :html => {:class => 'form-style'} do |f| %>
-        <%= f.label "add anoter:" %>
+        <%= f.label "add another:" %>
         <%= f.text_field :name, :class=> 'form-group form-text text-muted'%>
       <% f.submit %>
     <% end %>
   </div>
-  </div>
-</div>
 
-<div class="footer mt-5">
-  <div class="footer-links">
-    <a href="#"><i class="fab fa-github"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-  </div>
-  <div class="footer-copyright">
-    This footer is made with <i class="fas fa-heart"></i>
-  </div>
 </div>
 

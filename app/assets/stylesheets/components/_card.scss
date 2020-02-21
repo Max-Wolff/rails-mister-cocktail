@@ -1,15 +1,39 @@
 .card-category {
   background-size: cover;
   background-position: center;
-  height: 200px;
+  height: 300px;
   width: 350px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 24px;
+  font-size: 30px;
+  font-family: 'Kaushan Script', cursive;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: 2px solid;
+}
+
+.card-category:hover {
+  align-items: top;
+}
+
+.card-category-type {
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  font-family: 'Kaushan Script', cursive;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border: 2px solid;
 }

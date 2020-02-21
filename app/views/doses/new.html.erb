@@ -1,9 +1,0 @@
-<h1>Create new Dose</h1>
-
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-  <%= f.input :description %>
-  <%= f.association :ingredient %>
-  <%= f.association :cocktail %>
-  <%= f.submit %>
-<% end %>
-
