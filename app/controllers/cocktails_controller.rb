@@ -10,7 +10,8 @@ class CocktailsController < ApplicationController
     @cocktails = Cocktail.all
     @search = params["params"]
     if @search.present? && @search[":search"].empty? == false
-      @name = @search[":search"]
+      @name = "#{@search[":search"]} Cocktail"
+      raise
       @cocktails = Cocktail.where(name: @name)
     end
   end
