@@ -6,8 +6,13 @@ class CocktailsController < ApplicationController
   before_action :set_cocktail, only: [:show]
 
   def index
-    @cocktails = Cocktail.all
     @cocktail = Cocktail.new
+    @cocktails = Cocktail.all
+    @search = params["params"]
+    if @search.present? && @search[":search"].empty? == false
+      @name = @search[":search"]
+      @cocktails = Cocktail.where(name: @name)
+    end
   end
 
   def show
