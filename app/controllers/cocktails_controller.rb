@@ -16,8 +16,7 @@ class CocktailsController < ApplicationController
   end
 
   def show
-    id = @cocktail.id
-    @dose = Dose.new(cocktail_id: id)
+    @dose = Dose.new(cocktail_id: @cocktail.id)
   end
 
   def create
