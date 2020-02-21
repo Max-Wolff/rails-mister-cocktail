@@ -19,14 +19,8 @@ ingredients["drinks"].each do |ingredient_hash|
   ingredient_array << ingredient_name
 end
 
-ingredient_array = array.sort
+ingredient_array = ingredient_array.sort
 
 ingredient_array.each do |ingredient|
   Ingredient.create(name: ingredient)
 end
-
-Cocktail.create(name: "Vodka Sour", picture_url: "https://recipecontent.fooby.ch/13463_3-2_480-320.jpg")
-Cocktail.create(name: "Vodka Mate", picture_url: "https://i.pinimg.com/originals/94/db/f2/94dbf2f227cc9a1af31ef0e4d0337a6b.jpg")
-Cocktail.create(name: "Jägermeister Shots", picture_url: "https://media-cdn.tripadvisor.com/media/photo-s/0d/8f/65/0e/jaegermeister-germany.jpg")
-Cocktail.create(name: "Gin Gin Mule", picture_url: "https://cocktailbart.de/wp-content/uploads/2015/11/Fotolia_83278019_Subscription_Monthly_M.jpg")
-Cocktail.create(name: "2410190-berliner-luft-1", picture_url: "https://www.baselweine.ch/img_artikel/large/2410190-berliner-luft-1.jpg")
