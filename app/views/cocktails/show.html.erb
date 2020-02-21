@@ -16,8 +16,9 @@
 
   <% @cocktail.doses.each_with_index do |dose, index| %>
   <div class="d-flex justify-content-center">
-  <%= "Step #{index + 1}: Add #{dose.description} #{Ingredient.find(dose.ingredient_id).name}" %>
-    <%= link_to "⨯", dose_path(dose), method: :delete %>
+    <h2 class="list-create"><%= "Step #{index + 1}: " %></h2>
+    <h2 class="list-create"><%= " Add #{dose.description} #{Ingredient.find(dose.ingredient_id).name}" %></h2>
+    <h2 class="list-delete"><%= link_to "⨯", dose_path(dose), method: :delete %></h2>
     <br><br>
     </div>
   <% end %>

@@ -25,14 +25,6 @@ class CocktailsController < ApplicationController
       @cocktail.save
       redirect_to cocktails_path
     end
-    id = params[:cocktail_id].to_i
-    @cocktail = Cocktail.find(id)
-    @dose = Dose.new(dose_params)
-    if @dose.save
-      redirect_to cocktail_path(@cocktail)
-    else
-      render :new
-    end
   end
 
   def destroy
