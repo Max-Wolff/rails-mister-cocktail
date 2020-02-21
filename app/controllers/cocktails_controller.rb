@@ -23,6 +23,7 @@ class CocktailsController < ApplicationController
   def create
     @cocktail = Cocktail.new(cocktail_params)
     scraper(@cocktail)
+    @cocktail.name = @cocktail.name + " Cocktail"
     if @cocktail.save
       redirect_to cocktails_path
     else
